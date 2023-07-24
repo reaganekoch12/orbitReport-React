@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = ({ sat }) => {
+function Table ({ sat }) {
   return (
     <table>
       <thead>
@@ -30,5 +30,16 @@ const Table = ({ sat }) => {
     </table>
   );
 };
-
+// Define PropTypes to specify the expected type of the sat prop
+Table.propTypes = {
+  sat: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      launchDate: PropTypes.string.isRequired,
+      status: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
+};
 export default Table;

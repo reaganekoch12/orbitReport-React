@@ -1,29 +1,32 @@
 import Buttons from "./components/Buttons";
 import Table from "./components/Table";
-import React, { useState } from 'react';
+import React  from 'react';
 import * as satData from './satData.js';
-import{banner} from './banner.js'
-//importing banner from banner file
-function App(){
+import { banner } from './banner.js'; // Make sure this is the correct import statement
+
+function App() {
   const [sat, setSat] = useState(satData);
-  const displaySats = [...new Set(satData.map((data) => data.orbitType))];
+  const displaySats = [...new Set(sat.map((data) => data.orbitType))];
+
+  const filterByType = (currentType) => {
+    const displaySats = satData.filter((newSatDisplay) => {
+      return newSatDisplay.orbitType === currentType;
+    });
+    setSat(displaySats);
+  };
+
   return (
-    <div>
-      <Buttons  
-         filterByType={filterByType}
-     setSat={setSat}
-     displaySats={displaySats}
-   />
-      <Table />
-    {banner()}
-//invoking banner function
-    </div>
+    <>
+    <Banner />
+    <Buttons
+      filterByType={filterByType}
+      setSat={setSat}
+      displaySats={displaySats}
+    />
+    <Table sat={sat} />
+  </>
+ 
   );
 }
-const filterByType = (currentType) => {
-  const displaySats = satData.filter((newSatDisplay) => {
-     return newSatDisplay.orbitType === currentType;
-  });
-  setSat(displaySats);
-};
+
 export default App;
