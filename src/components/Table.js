@@ -1,4 +1,5 @@
 import React from 'react';
+
 function Table({ sat }) {
   return (
     <table>
@@ -25,4 +26,5 @@ function Table({ sat }) {
 }
 
 export default Table;
+
 
